@@ -93,17 +93,9 @@ def make_time_string(dates, clock):
     if dates is None:
         dates = []
 
-    if isinstance(dates, list) and len(dates)>0:
-        if type(dates[0]) is str:
-            datesstr = " ".join(dates)
-        else:
-            print '%s is of uncompatible type list of %s.' % (who, str(type(dates[0])))
-    elif isinstance(dates, basestring):
-        datesstr = dates.split() # any whitespace
-    else:
-        print '%s is of uncompatible type %s.' % (who, str(type(dates)))
-        sys.exit(1)
-    dates = datesstr
+    # Values origination from the config file are not splitted
+    if isinstance(dates, basestring):
+        dates = dates.split() # any whitespace
 
     if len(dates) > 3:
         print 'Max three arguments to date', dates
